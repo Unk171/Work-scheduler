@@ -1,13 +1,16 @@
 // corrent hour for comparison 
 var hour1 = dayjs().format('H');
+
 // current date 
+var date = $('#currentDay');
 date.text(dayjs().format('MMM D, YYYY'));
+
 // variables 
 var hour = Number(hour1);
 var a;
 var b;
 var scheduleEl = $('#schedule');
-var date = $('#currentDay');
+
 // loop for render schedule 
 for (var i = 9; i <= 17; i++) {
   if (i > 12) {
@@ -36,8 +39,10 @@ for (var i = 9; i <= 17; i++) {
   hr.append(hrCh);
   hr.append(textar);
   hr.append(saveBtn);
+
   // load event from local Storage
   textar.text(localStorage.getItem('#hour-' + a));
+
   // choose parseInt, now or future 
   if (i < hour) {
     hr.addClass('row time-block past')
@@ -51,11 +56,13 @@ for (var i = 9; i <= 17; i++) {
 // save button event 
 var btnSave = $('.btn');
 btnSave.on('click', function (event) {
+
   // correct hour element 
   var element = event.target;
   var num = parseFloat(element.dataset.number);
   var hrNum = "#hour-" + num;
   var cont2 = $(hrNum).val();
+  
   // set to storage 
   localStorage.setItem(hrNum, cont2);
 });
